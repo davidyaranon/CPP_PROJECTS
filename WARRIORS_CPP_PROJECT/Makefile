@@ -12,4 +12,4 @@ Warriors.o: Warriors.hpp
 Battle.o: Battle.hpp Warriors.hpp
 
 clean:
-	rm -f core *.o 
+	rm -f core *.o
