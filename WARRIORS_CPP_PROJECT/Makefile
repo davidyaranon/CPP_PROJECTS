@@ -1,19 +1,15 @@
-CFLAGS = -O
+CFLAGS = -Wall -g
 CC = g++
 
-all: Run
+Run: Run.o Warriors.o Battle.o
+	$(CC) $(CFLAGS) -o Run Run.o Warriors.o Battle.o
 
-Run: Run.cpp Warriors.cpp Battle.cpp
-	$(CC) -o Run Run.o Warriors.o Battle.o -lm
-
-Run.o: Run.cpp
+Run.o: Run.cpp Warriors.hpp Battle.hpp
 	$(CC) $(CFLAGS) -c Run.cpp
 
-Warriors.o: Warriors.cpp
-	$(CC) $(CFLAGS) -c Warriors.cpp
+Warriors.o: Warriors.hpp
 
-Battle.o: Battle.cpp
-	$(CC) $(CFLAGS) -c Battle.cpp
+Battle.o: Battle.hpp Warriors.hpp
 
 clean:
 	rm -f core *.o 
