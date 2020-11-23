@@ -24,6 +24,7 @@ Game::Game(int numPlayers){
     playGame(this->board);
 }
 
+
 //READING THESE FILES IN THIS WAY CAUSES THE WORD TO RETURN WITH THE \r AT THE END OF THE STRING!
 std::vector<std::string> Game::readWordsFile(std::string fileName){
     std::ifstream file(fileName);
@@ -100,6 +101,16 @@ bool Game::wordFound(Board board){
     return true;
 }
 
+bool Game::lettersDuplicate(std::vector<std::string> lettersGuessed, std::string letter){
+    transform(letter.begin(), letter.end(), letter.begin(), ::toupper);
+    for (int it = 0; it < lettersGuessed.size(); it++){
+        if(lettersGuessed[it] == letter){
+            return true;
+        }
+    }
+    return false;
+}
+
 void Game::playGame(Board board){
     char exit = '\0';
     std::string letter = "";
@@ -130,9 +141,18 @@ void Game::playGame(Board board){
                 std::cout << "Enter your guess: ";
                 ws(std::cin);
                 std::getline(std::cin, letter);
-                while(letter.size() != 1){
-                    std::cout << "Please only enter one letter at a time: " << std::endl;
-                    std::getline(std::cin, letter);
+                while(true){ //While input size > 1 or has been guessed previously...
+                    if(letter.size() != 1){
+                        std::cout << "Please only enter one letter at a time: " << std::endl;
+                        std::getline(std::cin, letter);
+                    }
+                    if(lettersDuplicate(this->lettersGuessed, letter)){
+                        std::cout << "Letter has already been guessed. Guess again: " << std::endl;
+                        std::getline(std::cin, letter);
+                    }
+                    else{
+                        break;
+                    }
                 }
                 transform(letter.begin(), letter.end(), letter.begin(), ::toupper);
                 std::string temp = letter;
@@ -153,12 +173,12 @@ void Game::playGame(Board board){
                     board.printState(getWord(), this->guesses, this->lettersGuessed, this->category);
                 }
             }
+            if(win == 0){
+                std::cout << "PLAYER " << getPlayer() + 1 << " HAS LOST!\n";
+            }
             this->player++;
             this->guesses = 6;
             this->lettersGuessed.clear();
-            if(win == 0){
-                std::cout << "PLAYER " << getPlayer() + 1 << " HAS WON! THE WORD WAS " << getWord() <<  std::endl;
-            }
         }
         this->player = 0;
         std::cout << "Want to keep playing? Press 'e' for no, or any key to continue: " << std::endl;
