@@ -18,6 +18,7 @@ public:
     int getPlayer();
     void playGame(Board board);
     bool wordFound(Board board);
+    bool lettersDuplicate(std::vector<std::string> lettersGuessed, std::string letter);
     std::string fileParse(std::string fileName);
     std::vector<std::string> readWordsFile(std::string fileName);
 
