@@ -1,5 +1,5 @@
 # C++_PROJECTS
-This hold all code written using Object Oriented Programming in C++
+This hold all code written using Object Oriented Programming in C++ (if you're going to pull make sure to change your directory!)
 
 WARRIORS_CPP_PROJECT: This project is a game within the terminal of whichever IDE you plan on running it on. A user specifed amount of 'Warriors' battle, dealing damage to another opponent, until one is victorious. The game's rules are as follows: "Each warrior will have a base damage of 5 and a base health of 100. At the beginning of each game, bonus health will be granted ranging from 0 - 10 (random, so some players might start off with more health).\nEach turn the warriors will be granted bonus damage ranging from 0 - 9 (also random). The game ends when one warrior has 0 health remaining". It works with two classes (Warriors class and Battle class). MAKEFILE NOW WORKS.
 
