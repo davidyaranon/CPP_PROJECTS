@@ -65,7 +65,7 @@ void Game::generateWord(){
         ws(std::cin);
         std::string word;
         std::getline(std::cin, word);
-        std::cout <<"\n\n\n\n" << std::endl;
+        std::cout <<"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
         for(int i = 0; i < word.size(); i++){
             if(word[i] == ' '){
                 word[i] = '-';
@@ -174,7 +174,7 @@ void Game::playGame(Board board){
                 }
             }
             if(win == 0){
-                std::cout << "PLAYER " << getPlayer() + 1 << " HAS LOST!\n";
+                std::cout << "PLAYER " << getPlayer() + 1 << " HAS WON!\n";
             }
             this->player++;
             this->guesses = 6;
