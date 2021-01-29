@@ -80,3 +80,37 @@ int findMinSet(std::vector<int> &arr){
     }
     return numRemoved;
 }
+
+
+
+//CLEANED CODE WITHOUT COMMENTS
+
+int findMinSetCleaned(std::vector<int> &arr){
+    std::unordered_map<int, int> hashMap;
+    for(const auto &i : arr){
+        if(hashMap.find(i) != hashMap.end()){
+            hashMap.at(i) += 1;
+        }
+        hashMap.insert({i, 1});
+    }
+    
+    std::priority_queue<int> queue;
+
+    for(const auto &i : hashMap){
+        queue.push(i.second);
+    }
+    
+    int numRemoved = 0;
+    int origSize = arr.size();
+    int newSize = origSize;
+    while(queue.size() != 0){
+        if(newSize <= origSize / 2){
+            return numRemoved;
+        }
+        newSize = newSize - queue.top();
+        queue.pop();
+        numRemoved++;
+    }
+    
+    return numRemoved;
+}
